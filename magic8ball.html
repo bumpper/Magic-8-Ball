@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Magic 8 Ball - Ask Questions Get Mystical Answers</title>
+    
+    <!-- Enhanced Meta Tags -->
+    <meta name="Rating" content="general" />
+    <meta name="DESCRIPTION" content="Ask any question and shake the Magic 8 Ball for mystical answers! Get instant guidance with 20 classic responses including positive, negative, and neutral predictions. Perfect for decision making and fun." />
+    <meta name="KEYWORDS" content="Magic 8 Ball, magic eight ball, fortune teller, mystical answers, decision maker, oracle ball, ask questions, fortune telling, divination tool, magic ball answers" />
+    <meta name="author" content="Radius.Center" />
+    <meta name="distribution" content="Global" />
+    <meta name="robots" content="FOLLOW,INDEX" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://radius.center/magic8ball/magic8ball.html">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Magic 8 Ball - Ask Questions Get Mystical Answers">
+    <meta property="og:description" content="Shake the Magic 8 Ball for instant mystical answers to your questions. 20 classic responses for guidance and fun.">
+    <meta property="og:url" content="https://radius.center/magic8ball/magic8ball.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Radius.Center">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Magic 8 Ball - Mystical Answer Oracle">
+    <meta name="twitter:description" content="Ask questions and get mystical answers from the classic Magic 8 Ball">
+    
+    <!-- Language and Hreflang -->
+    <meta name="language" content="en">
+    <link rel="alternate" hreflang="en" href="https://radius.center/magic8ball/magic8ball.html">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Magic 8 Ball Oracle",
+      "description": "Interactive Magic 8 Ball for getting mystical answers to your questions",
+      "url": "https://radius.center/magic8ball/magic8ball.html",
+      "applicationCategory": "Entertainment",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "Radius.Center",
+        "url": "https://radius.center"
+      },
+      "keywords": ["Magic 8 Ball", "fortune telling", "mystical answers", "decision maker", "oracle"],
+      "genre": ["Fortune Telling", "Entertainment", "Decision Making"]
+    }
+    </script>
+    
+    <link rel="SHORTCUT ICON" href="favicon.ico" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s;
+        }
+        body.dark-mode {
+            background-color: #1a1a1a;
+        }
+        .hidden-title {
+		    display: none;
+		}
+        .magic-8-ball {
+            width: 600px;
+            height: 600px;
+            background-image: url('magic8ball.png');
+            background-size: cover;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .message {
+            width: 300px;
+            height: 300px;
+            background-color: #000000;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 28px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .shake {
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 90px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 25px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 25px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 21px;
+            width: 21px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #5555ff;
+        }
+        input:checked + .slider:before {
+            transform: translateX(25px);
+        }
+        .help-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s;
+            /* display: none; */
+        }
+        .help-btn:hover {
+            background-color: #e0e0e0;
+        }
+        .dark-mode .help-btn {
+            background-color: #444;
+            color: white;
+            border: 1px solid #555;
+            border-top: 2px solid #666;
+            border-left: 2px solid #666;
+        }
+        .dark-mode .help-btn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+<div class="hidden-title"><center><h1>Magic 8 Ball</h1></center></p></div>
+    <div class="dark-mode-toggle">
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    <a href="help.html" class="help-btn" title="Help Documentation" aria-label="Help Documentation">?</a>
+    <div class="magic-8-ball" id="magic8Ball">
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+		const magic8Ball = document.getElementById('magic8Ball');
+		const messageElement = document.getElementById('message');
+		const darkModeToggle = document.getElementById('darkModeToggle');
+		const body = document.body;
+
+		const messages = [
+		    "It is certain",
+		    "It is decidedly so",
+		    "Without a doubt",
+		    "Yes definitely",
+		    "You may rely on it",
+		    "As I see it, yes",
+		    "Most likely",
+		    "Outlook good",
+		    "Yes",
+		    "Signs point to yes",
+		    "Reply hazy, try again",
+		    "Ask again later",
+		    "Better not tell you now",
+		    "Cannot predict now",
+		    "Concentrate and ask again",
+		    "Don't count on it",
+		    "My reply is no",
+		    "My sources say no",
+		    "Outlook not so good",
+		    "Very doubtful"
+		];
+
+		function getRandomMessage() {
+		    return messages[Math.floor(Math.random() * messages.length)];
+		}
+
+		function shakeBall() {
+		    shakeSound.play();
+		    magic8Ball.classList.add('shake');
+		    messageElement.style.opacity = 0;
+		    
+		    setTimeout(() => {
+		        magic8Ball.classList.remove('shake');
+		        messageElement.textContent = getRandomMessage();
+		        messageElement.style.opacity = 1;
+		    }, 500);
+		}
+
+		function toggleDarkMode() {
+		    body.classList.toggle('dark-mode');
+		    localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+		    darkModeToggle.checked = body.classList.contains('dark-mode');
+		}
+
+		function applyDarkMode() {
+		    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+		    if (isDarkMode) {
+		        body.classList.add('dark-mode');
+		        darkModeToggle.checked = true;
+		    } else {
+		        body.classList.remove('dark-mode');
+		        darkModeToggle.checked = false;
+		    }
+		}
+
+		magic8Ball.addEventListener('click', shakeBall);
+		darkModeToggle.addEventListener('change', toggleDarkMode);
+
+		// Apply dark mode setting on page load
+		applyDarkMode();
+    </script>
+<audio id="shakeSound" src="shake.wav" preload="auto" volume="0.1"></audio>
+</body>
+</html>
