@@ -97,10 +97,31 @@
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 28px;
+            font-size: 3px;
             text-align: center;
             opacity: 0;
-            transition: opacity 0.5s;
+            filter: blur(20px);
+            transform: translateY(50px);
+        }
+        .message.show {
+            animation: floatUp 2s ease-out forwards;
+        }
+        @keyframes floatUp {
+            0% {
+                font-size: 3px;
+                filter: blur(20px);
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                font-size: 28px;
+                filter: blur(0px);
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
         .shake {
             animation: shake 0.5s;
@@ -241,12 +262,13 @@
 		function shakeBall() {
 		    shakeSound.play();
 		    magic8Ball.classList.add('shake');
+		    messageElement.classList.remove('show');
 		    messageElement.style.opacity = 0;
 		    
 		    setTimeout(() => {
 		        magic8Ball.classList.remove('shake');
 		        messageElement.textContent = getRandomMessage();
-		        messageElement.style.opacity = 1;
+		        messageElement.classList.add('show');
 		    }, 500);
 		}
 
