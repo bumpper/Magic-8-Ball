@@ -88,6 +88,21 @@
             align-items: center;
             position: relative;
         }
+        .magic-8-ball::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 80px;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 40%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        body.dark-mode .magic-8-ball::after {
+            display: none;
+        }
         .message {
             width: 300px;
             height: 300px;
@@ -247,7 +262,7 @@
 		    "Ask again later",
 		    "Better not tell you now",
 		    "Cannot predict now",
-		    "Concentrate and ask again",
+		    "Concentrate and<br>ask again",
 		    "Don't count on it",
 		    "My reply is no",
 		    "My sources say no",
@@ -267,7 +282,7 @@
 		    
 		    setTimeout(() => {
 		        magic8Ball.classList.remove('shake');
-		        messageElement.textContent = getRandomMessage();
+		        messageElement.innerHTML = getRandomMessage();
 		        messageElement.classList.add('show');
 		    }, 500);
 		}
